@@ -28,8 +28,6 @@
       // Get the UL element to display the search history
       const searchHistoryList = document.getElementById("searchHistory");
       //   console.log("searchHistory", searchHistory);
-
-      // Loop through the search history and create a list item for each search
       let count = 0;
       if (searchHistory) {
         searchHistory.forEach((search) => {
@@ -48,7 +46,6 @@
           li.innerHTML = `<div style="border:1px solid black; margin:10px">${count}.${searchTerm}    Searched On:${date} at ${time}</div>`;
           // (Searched On: ${date} at ${time})`;
           li.addEventListener("click", () => {
-            // Display the book data for the clicked search result
             displayBookData(li, search);
           });
           searchHistoryList.appendChild(li);
@@ -56,8 +53,6 @@
       } else {
         searchHistoryList.innerHTML = "No Search Results";
       }
-
-      // Handle the clear search button click event
       const clearSearchButton = document.getElementById("clearSearch");
       clearSearchButton.addEventListener("click", () => {
         localStorage.removeItem("bookSearches");
@@ -66,7 +61,6 @@
 
       function displayBookData(li, search) {
         // console.log("search", search);
-        // Get the search result from the search history
         const searchResult = search[0].data.items;
         // console.log("searchResult", searchResult);
         // Clear the current book list

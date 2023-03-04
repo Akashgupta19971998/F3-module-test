@@ -17,7 +17,6 @@ form.addEventListener("submit", (e) => {
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
-      // display book results
       resultsDiv.innerHTML = `<h2>Book Results For'${searchTerm}'</h2>`;
       console.log("data", data);
 
@@ -53,7 +52,6 @@ form.addEventListener("submit", (e) => {
 
       // store search term in localStorage
       saveSearch(searchTerm, data);
-      //   localStorage.setItem("lastSearch", searchTerm);
     })
     .catch((error) => {
       console.error(error);
