@@ -4,38 +4,38 @@ ViewSearchHistory.addEventListener("click", () => {
   window.location.href = "history.html";
 });
 
-const form = document.querySelector("form");
-const input = document.querySelector("input");
-const resultsDiv = document.querySelector("#results");
+let form = document.querySelector("form");
+let input = document.querySelector("input");
+let resultsDiv = document.querySelector("#results");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const searchTerm = input.value;
-  const encodedSearchTerm = encodeURIComponent(searchTerm);
-  const url = `https://www.googleapis.com/books/v1/volumes?q=${encodedSearchTerm}`;
+  let searchTerm = input.value;
+  let encodedSearchTerm = encodeURIComponent(searchTerm);
+  let url = `https://www.googleapis.com/books/v1/volumes?q=${encodedSearchTerm}`;
 
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       // display book results
-      resultsDiv.innerHTML = `<h2>Book Results For '${searchTerm}'</h2>`;
+      resultsDiv.innerHTML = `<h2>Book Results For'${searchTerm}'</h2>`;
       console.log("data", data);
 
       data.items.forEach((book) => {
-        const title = book.volumeInfo.title;
-        const authors = book.volumeInfo.authors
+        let title = book.volumeInfo.title;
+        let authors = book.volumeInfo.authors
           ? book.volumeInfo.authors.join(", ")
           : "Unknown";
-        const pageCount = book.volumeInfo.pageCount
+        let pageCount = book.volumeInfo.pageCount
           ? book.volumeInfo.pageCount
           : "Unknown";
-        const publisher = book.volumeInfo.publisher
+        let publisher = book.volumeInfo.publisher
           ? book.volumeInfo.publisher
           : "Unknown";
-        const image = book.volumeInfo.imageLinks
+        let image = book.volumeInfo.imageLinks
           ? book.volumeInfo.imageLinks.thumbnail
           : "https://via.placeholder.com/150x200";
-        const buyLink = book.saleInfo.buyLink ? book.saleInfo.buyLink : "#";
+        let buyLink = book.saleInfo.buyLink ? book.saleInfo.buyLink : "#";
 
         const bookDiv = document.createElement("div");
         bookDiv.classList.add("book");
@@ -68,7 +68,7 @@ form.addEventListener("submit", (e) => {
 // }
 
 function saveSearch(searchTerm, data) {
-  const timestamp = new Date();
+  let timestamp = new Date();
   console.log(searchTerm, timestamp, data);
   let searches = localStorage.getItem("bookSearches");
   searches = searches ? JSON.parse(searches) : [];
